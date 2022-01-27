@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game/Scenes/TestingEnvironments/StartScreen.unity
+    guid: 1c397cb47231360419a4a7da55dd32ac
+  - enabled: 1
+    path: Assets/Game/Scenes/TestingEnvironments/LevelSelector.unity
+    guid: 144de34818c35334e8eca4aed86e8b8f
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/Level1.unity
+    guid: ede8ada2be5ec024da465b8d813d5336
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/Level2.unity
+    guid: a4b2af83bff07f248a0ca8f69af63bd2
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/Level3.unity
+    guid: cca1dc7574a549a49936d67cdeb01623
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/Level4.unity
+    guid: e1177e5561bdd4549a7b1a8c260bf3df
+  - enabled: 0
+    path: Assets/Game/Scenes/Levels/LevelFour.unity
+    guid: 5bcdd1dc0b3d2ba49aa87aefacc06487
+  - enabled: 0
+    path: Assets/Game/Scenes/Playtesting/Menu/LevelSelector.unity
+    guid: bfd08689d10053948aa4738aafdd79e6
+  - enabled: 0
+    path: Assets/Game/Scenes/Playtesting/TestLevels/HiddenPlatformsTest.unity
+    guid: 6b26b66a6dafe1c48a1698714180764c
+  - enabled: 0
+    path: Assets/Game/Scenes/Playtesting/TestLevels/PortalsTestScene.unity
+    guid: 9e245dc388ef9f4429bfc6cec77fbc05
+  - enabled: 0
+    path: Assets/Game/Scenes/Playtesting/TestLevels/ConveyorbeltLevel.unity
+    guid: 963a0a8b2d3cd7c4988156ed4690c0eb
+  - enabled: 0
+    path: Assets/Game/Scenes/Playtesting/TestLevels/BreakableWallsTest.unity
+    guid: 4ad03be6cbe348e43b25eaf15c38fb4a
+  - enabled: 0
+    path: Assets/Game/Scenes/Playtesting/TestLevels/Trampoline_playtesting.unity
+    guid: b87db0391e4a68141b942cabf1f0baa7
+  m_configObjects: {}
