@@ -142,8 +142,10 @@ namespace Game.Scripts.AbilitiesSystem.Abilities
         /// <summary>
         ///     Player is ready and able to dash 
         /// </summary>
-        private void ReadyState() => _canDash = true;
-
+        private void ReadyState()
+        {
+            _canDash = true;
+        }
         #endregion
     }
 }

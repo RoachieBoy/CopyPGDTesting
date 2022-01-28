@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7971936396501096722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 4.0186524, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _brokenWallPiece: {fileID: 4871213722027656416, guid: ef955fb4555a96249a01cb43ff1b2a55, type: 3}
-  _player: {fileID: 0}
+  _keepPlayerSpeed: 1
 --- !u!61 &1907137353
 BoxCollider2D:
   m_ObjectHideFlags: 0

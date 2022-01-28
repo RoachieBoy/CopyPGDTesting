@@ -12,6 +12,11 @@ public class BreakableWall : MonoBehaviour
     [SerializeField] private bool _keepPlayerSpeed = true;
     private PlayerController _player;
 
+    private void Awake()
+    {
+        _player = GetComponent<PlayerController>(); 
+    }
+
     /// <summary>
     ///     When the player collides with a wall it will be replaced by stacked broken pieces
     /// </summary>
@@ -35,19 +40,24 @@ public class BreakableWall : MonoBehaviour
     /// <param name="other"></param>
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name.Equals("Player"))
+        if (!other.gameObject.name.Equals("Player")) return;
+
+        _player = other.gameObject.GetComponent<PlayerController>();
+
+        if (!_player.isDashing) return;
+        
+        BreakWall();
+
+        if (_keepPlayerSpeed)
         {
-            _player = other.gameObject.GetComponent<PlayerController>();
-
-            if (_player.isDashing)
-            {
-                BreakWall();
-
-                if (_keepPlayerSpeed)
-                {
-                    _player.Rigidbody.velocity = _player.PrevVelocity;
-                }
-            }
+            _player.Rigidbody.velocity = _player.PrevVelocity;
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!collision.gameObject.name.Equals("Player")) return;
+        
+        if(collision.gameObject.GetComponent<PlayerController>().isDashing) BreakWall();
     }
 }
