@@ -1,13 +1,13 @@
 using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
 
-namespace Game.Scripts.GameObjects.Obstacles
+namespace Game.Scripts.GameObjects.Platforms
 {
     public class MovingPlatform : MonoBehaviour
     {
         [SerializeField] private GameObject[] waypoints;
         [SerializeField] public float speed = 2f;
-        public int currentWayPointIndex = 0;
+        public int currentWayPointIndex;
 
         private void Start()
         {

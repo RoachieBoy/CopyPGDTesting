@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class MusicNote : MonoBehaviour
+namespace Game.Scripts.GameObjects.MusicNotes
 {
-    // Add movement based on music or whatsoever
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class MusicNote : MonoBehaviour
     {
-        // Check for colission with player
-        if (collision.gameObject.tag != "Player") return; 
-        // Spawn Particle System
+        // Add movement based on music or whatsoever
 
-        // Destroy gameObject
-        Destroy(gameObject);
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            // Check for colission with player
+            if (!collision.gameObject.CompareTag("Player")) return; 
+            // Spawn Particle System
+
+            // Destroy gameObject
+            Destroy(gameObject);
+        }
     }
 }

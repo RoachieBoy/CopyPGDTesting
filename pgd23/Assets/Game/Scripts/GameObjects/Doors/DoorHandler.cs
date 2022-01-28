@@ -1,62 +1,62 @@
 using Game.Scripts.Core_LevelManagement.EventManagement;
+using Game.Scripts.Tools;
 using UnityEngine;
 
-public class DoorHandler : MonoBehaviour
+namespace Game.Scripts.GameObjects.Doors
 {
-    [Header("Doors")]
-    [SerializeField] private MoveObject upperDoor;
-    [SerializeField] private MoveObject lowerDoor;
+    public class DoorHandler : MonoBehaviour
+    {
+        [Header("Doors")]
+        [SerializeField] private MoveObject upperDoor;
+        [SerializeField] private MoveObject lowerDoor;
 
-    private Vector3 upperDoorPosition;
-    private Vector3 lowerDoorPosition;
+        private Vector3 _upperDoorPosition;
+        private Vector3 _lowerDoorPosition;
+        private float _timeLeft;
 
-    private float timeLeft;
-
-    [SerializeField] private float waitTime;
-
-    [SerializeField] private bool opened;
-    [SerializeField] private bool listenToTrigger;
+        [SerializeField] private float waitTime;
+        [SerializeField] private bool opened;
+        [SerializeField] private bool listenToTrigger;
+        [SerializeField] private Vector3 upperDoorMove;
+        [SerializeField] private Vector3 lowerDoorMove;
     
-    [SerializeField] private Vector3 upperDoorMove;
-    [SerializeField] private Vector3 lowerDoorMove;
-    
-    [SerializeField, Range(0f, 1f)] private float timeToComplete;
+        [SerializeField, Range(0f, 1f)] private float timeToComplete;
 
-    private void Start()
-    {
-        upperDoorPosition = upperDoor.transform.position;
-        lowerDoorPosition = lowerDoor.transform.position;
-        if(listenToTrigger) EventManager.Instance.onTrigger2 += Move;
-    }
-
-    private void OnDisable()
-    {
-        if(listenToTrigger) EventManager.Instance.onTrigger2 -= Move;
-    }
-
-    private void Update()
-    {
-        timeLeft -= Time.deltaTime;
-    }
-
-    public void Move()
-    {
-        if (timeLeft > 0) return;
-        if (!opened)
+        private void Start()
         {
-            upperDoor.Move(upperDoorMove, timeToComplete, waitTime);
-            lowerDoor.Move(lowerDoorMove, timeToComplete, waitTime);
-            timeLeft = timeToComplete;
+            _upperDoorPosition = upperDoor.transform.position;
+            _lowerDoorPosition = lowerDoor.transform.position;
+            if(listenToTrigger) EventManager.Instance.onTrigger2 += Move;
         }
-        else
-        {
-            var distance = Vector3.Distance(upperDoorPosition, upperDoorPosition + upperDoorMove);
-            var timing = distance / upperDoorMove.magnitude * timeToComplete;
-            upperDoor.Move(upperDoorPosition - upperDoor.transform.position, timing);
-            lowerDoor.Move(lowerDoorPosition - lowerDoor.transform.position, timing);
-            timeLeft = timing;
-        }
-        opened = !opened;
-    }
 
+        private void OnDisable()
+        {
+            if(listenToTrigger) EventManager.Instance.onTrigger2 -= Move;
+        }
+
+        private void Update()
+        {
+            _timeLeft -= Time.deltaTime;
+        }
+
+        private void Move()
+        {
+            if (_timeLeft > 0) return;
+            if (!opened)
+            {
+                upperDoor.Move(upperDoorMove, timeToComplete, waitTime);
+                lowerDoor.Move(lowerDoorMove, timeToComplete, waitTime);
+                _timeLeft = timeToComplete;
+            }
+            else
+            {
+                var distance = Vector3.Distance(_upperDoorPosition, _upperDoorPosition + upperDoorMove);
+                var timing = distance / upperDoorMove.magnitude * timeToComplete;
+                upperDoor.Move(_upperDoorPosition - upperDoor.transform.position, timing);
+                lowerDoor.Move(_lowerDoorPosition - lowerDoor.transform.position, timing);
+                _timeLeft = timing;
+            }
+            opened = !opened;
+        }
+    }
 }

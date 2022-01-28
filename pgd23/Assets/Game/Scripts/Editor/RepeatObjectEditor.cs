@@ -1,31 +1,34 @@
+using Game.Scripts.Tools;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(RepeatObject))]
-public class RepeatObjectEditor : Editor
+namespace Game.Scripts.Editor
 {
-    RepeatObject repeatObject;
-
-    private SerializedProperty amountOfObjects;
-    private SerializedProperty offset;
-
-    private void Awake()
+    [CustomEditor(typeof(RepeatObject))]
+    public class RepeatObjectEditor : UnityEditor.Editor
     {
-        repeatObject = (RepeatObject)target;
-        amountOfObjects = serializedObject.FindProperty("amountOfObjects");
-        offset = serializedObject.FindProperty("offset");
-    }
+        private RepeatObject _repeatObject;
+        private SerializedProperty _amountOfObjects;
+        private SerializedProperty _offset;
 
-    public override void OnInspectorGUI()
-    {
-        int previousAmountOfObjects = amountOfObjects.intValue;
-        Vector2 previousOffset = offset.vector2Value;
+        private void Awake()
+        {
+            _repeatObject = (RepeatObject)target;
+            _amountOfObjects = serializedObject.FindProperty("amountOfObjects");
+            _offset = serializedObject.FindProperty("offset");
+        }
 
-        base.OnInspectorGUI();
+        public override void OnInspectorGUI()
+        {
+            var previousAmountOfObjects = _amountOfObjects.intValue;
+            var previousOffset = _offset.vector2Value;
 
-        serializedObject.Update();
+            base.OnInspectorGUI();
 
-        if (previousAmountOfObjects != amountOfObjects.intValue) repeatObject.CorrectChildCount();
-        if (previousOffset != offset.vector2Value) repeatObject.RepositionChildren();
+            serializedObject.Update();
+
+            if (previousAmountOfObjects != _amountOfObjects.intValue) _repeatObject.CorrectChildCount();
+            if (previousOffset != _offset.vector2Value) _repeatObject.RepositionChildren();
+        }
     }
 }

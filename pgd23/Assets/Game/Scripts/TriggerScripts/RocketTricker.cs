@@ -1,15 +1,19 @@
+using Game.Scripts.GameObjects.Rockets;
 using UnityEngine;
 
-public class RocketTricker : MonoBehaviour
+namespace Game.Scripts.TriggerScripts
 {
-    [SerializeField] PlainRocket[] rockets;
-    private void OnCollisionEnter2D(Collision2D collision)
+    public class RocketTricker : MonoBehaviour
     {
-        if(collision.transform.tag == "Player")
+        [SerializeField] PlainRocket[] rockets;
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            for (int i = 0; i < rockets.Length; i++)
+            if(collision.transform.tag == "Player")
             {
-                rockets[i].activate = true;
+                for (int i = 0; i < rockets.Length; i++)
+                {
+                    rockets[i].activate = true;
+                }
             }
         }
     }

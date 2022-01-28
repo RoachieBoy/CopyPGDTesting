@@ -1,8 +1,6 @@
 using System;
-using Game.Scripts.AbilitiesSystem;
 using Game.Scripts.AbilitiesSystem.AbilityHandler;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.KeyBindings
 {

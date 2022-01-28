@@ -1,7 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
 using Game.Scripts.AbilitiesSystem.AbilityHandler;
 using Game.Scripts.Core_LevelManagement.EventManagement;
-using Game.Scripts.GameObjects.Obstacles;
 using Game.Scripts.KeyBindings;
 using UnityEngine;
 

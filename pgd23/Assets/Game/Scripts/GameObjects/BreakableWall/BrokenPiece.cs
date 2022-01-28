@@ -1,31 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BrokenPiece : MonoBehaviour
+namespace Game.Scripts.GameObjects.BreakableWall
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private float _minimumSurvivalTime;
-
-    /// <summary>
-    ///     Set variables that are expensive to look up
-    /// </summary>
-    private void Start()
+    public class BrokenPiece : MonoBehaviour
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        [SerializeField] private float minimumSurvivalTime;
 
-    /// <summary>
-    ///     Checks every frame if a broken piece is in the bounds of the camera. If not, then it deletes it
-    /// </summary>
-    private void Update()
-    {
-            _minimumSurvivalTime -= Time.deltaTime;
-
-        if (_minimumSurvivalTime <= 0)
+        /// <summary>
+        ///     Checks every frame if a broken piece is in the bounds of the camera. If not, then it deletes it
+        /// </summary>
+        private void Update()
         {
-            Destroy(gameObject);
+            minimumSurvivalTime -= Time.deltaTime;
+
+            if (minimumSurvivalTime <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

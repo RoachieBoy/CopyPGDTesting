@@ -9,7 +9,7 @@ namespace Game.Scripts.GameObjects.Lasers
         [Header("Laser Objects")] [SerializeField]
         private GameObject laserEmitter;
 
-        [SerializeField] private GameObject _particleEmitter;
+        [SerializeField] private GameObject particleEmitter;
         [SerializeField] private Material laserMaterial;
 
         [Header("Laser Settings")] [SerializeField, Range(1, 4)]
@@ -18,18 +18,14 @@ namespace Game.Scripts.GameObjects.Lasers
         [SerializeField] private float laserLength = 3;
         [SerializeField] private float rotationSpeed = 1;
 
-        private List<LineRenderer> lasers = new List<LineRenderer>();
-        private List<LaserParticles> _particles = new List<LaserParticles>();
-
+        private readonly List<LineRenderer> _lasers = new List<LineRenderer>();
+        private readonly List<LaserParticles> _particles = new List<LaserParticles>();
 
         private void Start()
         {
             // Initialize all the needed lasers
-            for (int i = 0; i < amountOfLasers; i++)
-                lasers.Add(InitiateLaser(i));
-
-            // Convert the list to an array
-            lasers.ToArray();
+            for (var i = 0; i < amountOfLasers; i++)
+                _lasers.Add(InitiateLaser(i));
         }
 
         private void Update()
@@ -45,7 +41,7 @@ namespace Game.Scripts.GameObjects.Lasers
 
         private void UpdateLasers()
         {
-            for (int i = 0; i < amountOfLasers; i++)
+            for (var i = 0; i < amountOfLasers; i++)
             {
                 // Determine startpoint
                 // Edge of sprite
@@ -53,15 +49,15 @@ namespace Game.Scripts.GameObjects.Lasers
                 // Rotation
                 var objectRotation = laserEmitter.transform.localRotation.eulerAngles.z * Mathf.Deg2Rad;
                 var angle = -objectRotation + i * (360 / amountOfLasers) * Mathf.Deg2Rad;
-                var rot = new Vector2((float) Mathf.Cos(angle), -(float) Mathf.Sin(angle));
-
+                var rot = new Vector2(Mathf.Cos(angle), -Mathf.Sin(angle));
                 var pos1 = (Vector2) laserEmitter.transform.position + rot * magnitude;
-                lasers[i].SetPosition(0, pos1);
+                
+                _lasers[i].SetPosition(0, pos1);
                 // rotation => Direction 
                 var pos2 = pos1 + rot * laserLength;
-
                 // Check with raycast whether something is hit
-                RaycastHit2D hit = Physics2D.Raycast(pos1, rot, laserLength);
+                var hit = Physics2D.Raycast(pos1, rot, laserLength);
+                
                 if (hit == true)
                 {
                     if (hit.collider.tag.Equals("Player"))
@@ -74,10 +70,11 @@ namespace Game.Scripts.GameObjects.Lasers
                     
                     //place, rotate and play particle
                     _particles[i].Holder.position = hit.point;
-                    Vector3 rotation = _particles[i].Holder.eulerAngles;
+                    
+                    var rotation = _particles[i].Holder.eulerAngles;
                     rotation.z =  Vector3.Angle(pos2, pos1);
+                    
                     _particles[i].Holder.eulerAngles = rotation;
-
                     _particles[i].ToggleParticles(true);
                 }
                 else
@@ -85,59 +82,63 @@ namespace Game.Scripts.GameObjects.Lasers
                     _particles[i].ToggleParticles(false);
                 }
 
-                lasers[i].SetPosition(1, pos2);
+                _lasers[i].SetPosition(1, pos2);
             }
         }
 
         private LineRenderer InitiateLaser(int i)
         {
             // Creating new GameObject and adding a LineRenderer
-            GameObject g = new GameObject("Laser " + i);
-            g.transform.parent = transform;
-            LineRenderer l = g.AddComponent<LineRenderer>();
+            var g = new GameObject("Laser " + i)
+            {
+                transform =
+                {
+                    parent = transform
+                }
+            };
+            var l = g.AddComponent<LineRenderer>();
             // Setting the width
             l.SetWidth(.2f, .2f);
 
-            GameObject particleSystem = Instantiate(_particleEmitter, Vector3.zero, Quaternion.identity, g.transform);
-            ParticleSystem[] children = particleSystem.GetComponentsInChildren<ParticleSystem>();
+            var system = Instantiate(particleEmitter, Vector3.zero, Quaternion.identity, g.transform);
+            var children = system.GetComponentsInChildren<ParticleSystem>();
             
             _particles.Add(new LaserParticles(children[0], children[1]));
 
             g.GetComponent<Renderer>().material = laserMaterial;
+            
             return l;
         }
     }
-}
 
-public class LaserParticles
-{
-    private ParticleSystem _flash;
-    private ParticleSystem _emitter;
-
-    public LaserParticles(ParticleSystem flash, ParticleSystem emitter)
+    public class LaserParticles
     {
-        _flash = flash;
-        _emitter = emitter;
-    }
+        private readonly ParticleSystem _flash;
+        private readonly ParticleSystem _emitter;
 
-    public void ToggleParticles(bool turnOn)
-    {
-        if (turnOn && !_flash.isPlaying)
+        public LaserParticles(ParticleSystem flash, ParticleSystem emitter)
         {
-            Holder.gameObject.SetActive(true);
-            _flash.Play();
-            _emitter.Play();
+            _flash = flash;
+            _emitter = emitter;
         }
-        else if (!turnOn && _flash.isPlaying)
-        {
-            Holder.gameObject.SetActive(false);
-            _flash.Stop();
-            _emitter.Stop();
-        }
-    }
 
-    public Transform Holder
-    {
-        get { return _flash.transform.parent; }
+        public void ToggleParticles(bool turnOn)
+        {
+            switch (turnOn)
+            {
+                case true when !_flash.isPlaying:
+                    Holder.gameObject.SetActive(true);
+                    _flash.Play();
+                    _emitter.Play();
+                    break;
+                case false when _flash.isPlaying:
+                    Holder.gameObject.SetActive(false);
+                    _flash.Stop();
+                    _emitter.Stop();
+                    break;
+            }
+        }
+
+        public Transform Holder => _flash.transform.parent;
     }
 }

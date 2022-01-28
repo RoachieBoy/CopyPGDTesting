@@ -1,53 +1,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketLauncher : MonoBehaviour
+namespace Game.Scripts.GameObjects.Rockets
 {
-    [SerializeField] Transform target;
-    [SerializeField] float viewDistance;
-    public List<HeatSeekingRocket> rockets = new List<HeatSeekingRocket>();
-
-    private bool targetInDistance = false;
-
-    private void Start()
+    public class RocketLauncher : MonoBehaviour
     {
-            
-    }
-
-    private void FixedUpdate()
-    {
-        targetDetection();
-
-        if (targetInDistance)
+        [SerializeField] private Transform target;
+        [SerializeField] private float viewDistance;
+        
+        public List<HeatSeekingRocket> rockets = new List<HeatSeekingRocket>();
+        
+        private bool _targetInDistance;
+        
+        private void FixedUpdate()
         {
-            attackState();
+            TargetDetection();
+
+            if (_targetInDistance)
+            {
+                AttackState();
+            }
         }
-    }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    private void targetDetection()
-    {
-        Vector2 targetDirection = target.position - transform.position;
-        float targetDistance = (targetDirection.x * targetDirection.x) + (targetDirection.y * targetDirection.y);
-        Mathf.Sqrt(targetDistance);
-
-
-        if (targetDistance < viewDistance) 
+        /// <summary>
+        /// 
+        /// </summary>
+        private void TargetDetection()
         {
-            targetInDistance = true;
-        }
-        else
-        {
-            targetInDistance = false;
-        }
-    }
+            Vector2 targetDirection = target.position - transform.position;
+            var targetDistance = (targetDirection.x * targetDirection.x) + (targetDirection.y * targetDirection.y);
+            Mathf.Sqrt(targetDistance);
 
-    private void attackState()
-    {
-        HeatSeekingRocket rocket = GetComponent<HeatSeekingRocket>();
-        //rocket.Initialize(transform.position, target);
-        rockets.Add(rocket);
+            _targetInDistance = targetDistance < viewDistance;
+        }
+
+        private void AttackState()
+        {
+            var rocket = GetComponent<HeatSeekingRocket>();
+            //rocket.Initialize(transform.position, target);
+            rockets.Add(rocket);
+        }
     }
 }

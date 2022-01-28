@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SmashObject : MonoBehaviour
+namespace Game.Scripts.GameObjects.Pillars
 {
-    public void OnTriggerEnter2D(Collider2D collision)
+    public class SmashObject : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("Player"))
+        public void OnTriggerEnter2D(Collider2D collision)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 }

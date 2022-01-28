@@ -1,34 +1,37 @@
 using Game.Scripts.AbilitiesSystem.AbilityHandler;
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+namespace Game.Scripts.GameObjects.Portal
 {
-    [SerializeField] private float speedMultiplier = 1.25f;
-    [SerializeField] private ParticleSystem _useParticle;
-
-    public void UsePortal(GameObject obj)
+    public class Portal : MonoBehaviour
     {
-        var objectRigidBody = obj.GetComponent<Rigidbody2D>();
-        // save player speed
-        var mag = objectRigidBody.velocity.magnitude;
-        // Set new position of player
-        obj.transform.position = transform.position + transform.right * 2;
-        // Reset player velocity to match portal direction
-        objectRigidBody.velocity = transform.right * mag * speedMultiplier;
+        [SerializeField] private float speedMultiplier = 1.25f;
+        [SerializeField] private ParticleSystem useParticle;
 
-        obj.GetComponent<PlayerController>()?.UpXLimit();
-    }
-
-    public void CollideWithPortal()
-    {
-        if (_useParticle != null && !_useParticle.isPlaying)
+        public void UsePortal(GameObject obj)
         {
-            _useParticle.Play();
-        }
-    }
+            var objectRigidBody = obj.GetComponent<Rigidbody2D>();
+            // save player speed
+            var mag = objectRigidBody.velocity.magnitude;
+            // Set new position of player
+            obj.transform.position = transform.position + transform.right * 2;
+            // Reset player velocity to match portal direction
+            objectRigidBody.velocity = transform.right * mag * speedMultiplier;
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, transform.position + transform.right * 2);
+            obj.GetComponent<PlayerController>()?.UpXLimit();
+        }
+
+        public void CollideWithPortal()
+        {
+            if (useParticle != null && !useParticle.isPlaying)
+            {
+                useParticle.Play();
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawLine(transform.position, transform.position + transform.right * 2);
+        }
     }
 }

@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public static class LevelManager
+namespace Game.Scripts.Menu
 {
-    public static void CompleteLevel(int levelId)
+    public static class LevelManager
     {
-        PlayerPrefs.SetInt("completed-" + levelId, 1);
-        //SceneManager.LoadScene("LevelSelector");
+        public static void CompleteLevel(int levelId)
+        {
+            PlayerPrefs.SetInt("completed-" + levelId, 1);
+            //SceneManager.LoadScene("LevelSelector");
+        }
     }
 }

@@ -1,25 +1,25 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class PortalManager : MonoBehaviour
+namespace Game.Scripts.GameObjects.Portal
 {
-    public static PortalManager current;
-
-    [SerializeField] private List<PortalCombination> portals;
-
-
-    private void Awake() => current = this;
-
-    public void UsePortal(Portal portal, GameObject obj)
+    public class PortalManager : MonoBehaviour
     {
-        foreach (PortalCombination comb in portals)
+        public static PortalManager Current;
+
+        [SerializeField] private List<PortalCombination> portals;
+
+
+        private void Awake() => Current = this;
+
+        public void UsePortal(Portal portal, GameObject obj)
         {
-            if (comb.HasPortal(portal))
+            foreach (var comb in portals.Where(comb => comb.HasPortal(portal)))
             {
                 comb.UsePortal(portal, obj);
                 return;
             }
-            
         }
     }
 }

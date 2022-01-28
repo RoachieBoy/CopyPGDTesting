@@ -1,8 +1,9 @@
+using System;
 using Game.Scripts.AbilitiesSystem.AbilityHandler;
 using UnityEngine;
-using static Game.Scripts.GameObjects.Obstacles.States.StatesConveyor;
+using static Game.Scripts.GameObjects.Conveyor_Belts.States.StatesConveyor;
 
-namespace Game.Scripts.GameObjects.Obstacles
+namespace Game.Scripts.GameObjects.Conveyor_Belts
 {
     public class ConveyorBelt : MonoBehaviour
     {
@@ -11,18 +12,26 @@ namespace Game.Scripts.GameObjects.Obstacles
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            var otherRB = collision.gameObject.GetComponent<Rigidbody2D>();
+            var otherRb = collision.gameObject.GetComponent<Rigidbody2D>();
             // If the object is the player, add the force
             if (collision.gameObject.GetComponent<PlayerController>())
             {
-                if (cs == Left) otherRB.velocity += new Vector2(-speed * Time.deltaTime, 0);
-                if (cs == Right) otherRB.velocity += new Vector2(speed * Time.deltaTime, 0);
+                otherRb.velocity += cs switch
+                {
+                    Left => new Vector2(-speed * Time.deltaTime, 0),
+                    Right => new Vector2(speed * Time.deltaTime, 0),
+                    _ => throw new ArgumentOutOfRangeException()
+                };
             }
             // If the object is not the player, set the speed
             else
             {
-                if (cs == Left) otherRB.velocity = new Vector2(-speed, 0);
-                if (cs == Right) otherRB.velocity = new Vector2(speed, 0);
+                otherRb.velocity = cs switch
+                {
+                    Left => new Vector2(-speed, 0),
+                    Right => new Vector2(speed, 0),
+                    _ => otherRb.velocity
+                };
             }
         }
     }

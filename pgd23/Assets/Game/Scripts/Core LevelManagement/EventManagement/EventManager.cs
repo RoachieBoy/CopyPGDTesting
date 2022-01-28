@@ -1,7 +1,6 @@
 using System;
 using Game.Scripts.Tools;
 using UnityEngine;
-// ReSharper disable All
 
 namespace Game.Scripts.Core_LevelManagement.EventManagement
 {

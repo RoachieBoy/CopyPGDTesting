@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts.GameObjects.Obstacles
+namespace Game.Scripts.GameObjects.Platforms
 {
     public class StickyPlatform : MonoBehaviour
     {

@@ -1,28 +1,30 @@
 using UnityEngine;
 
-[System.Serializable]
-public struct PortalCombination
+namespace Game.Scripts.GameObjects.Portal
 {
-    [SerializeField] private Portal portal1;
-    [SerializeField] private Portal portal2;
-    [SerializeField] private bool DestroyAfterUse;
-
-    public bool HasPortal(Portal portal) => portal1 == portal || portal2 == portal;
-
-    public void UsePortal(Portal portal, GameObject obj)
+    [System.Serializable]
+    public struct PortalCombination
     {
-        if (portal1 == portal)
+        [SerializeField] private Portal portal1;
+        [SerializeField] private Portal portal2;
+
+        public bool HasPortal(Portal portal) => portal1 == portal || portal2 == portal;
+
+        public void UsePortal(Portal portal, GameObject obj)
         {
-            portal2.UsePortal(obj);
-            portal1.CollideWithPortal();
+            if (portal1 == portal)
+            {
+                portal2.UsePortal(obj);
+                portal1.CollideWithPortal();
+            }
+
+            if (portal2 == portal)
+            {
+                portal1.UsePortal(obj);
+                portal2.CollideWithPortal();
+
+            }
         }
 
-        if (portal2 == portal)
-        {
-            portal1.UsePortal(obj);
-            portal2.CollideWithPortal();
-
-        }
     }
-
 }

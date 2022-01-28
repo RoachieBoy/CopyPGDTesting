@@ -1,4 +1,3 @@
-using System;
 using Game.Scripts.AudioManagement;
 using Game.Scripts.Tools;
 using UnityEngine;

@@ -5,7 +5,7 @@ using Game.Scripts.KeyBindings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Scripts.AbilitiesSystem
+namespace Game.Scripts.AbilitiesSystem.AbilityHandler
 {
     public class ControlContainer : MonoBehaviour
     {

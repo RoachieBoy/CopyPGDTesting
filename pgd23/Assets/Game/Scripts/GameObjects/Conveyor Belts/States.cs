@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.GameObjects.Obstacles
+﻿namespace Game.Scripts.GameObjects.Conveyor_Belts
 {
     public static class States
     {

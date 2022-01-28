@@ -2,73 +2,76 @@ using System.Collections;
 using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Game.Scripts.Core_LevelManagement.CameraManagement
 {
-    private Camera Camera;
-
-    // Screenshake variables
-    private Coroutine screenShake;
-    private Coroutine scale;
-
-    private void Awake() 
-        => Camera = GetComponent<Camera>();
-
-    private void Start() 
-        => EventManager.Instance.onTriggerShake += TriggerShake;
-
-    private void OnDisable() 
-        => EventManager.Instance.onTriggerShake -= TriggerShake;
-
-    /// <summary>
-    ///     Shakes the screen a certain amount
-    /// </summary>
-    private void TriggerShake(float duration, float magnitude)
+    public class CameraController : MonoBehaviour
     {
-        if (screenShake != null) StopCoroutine(screenShake);
-        screenShake = StartCoroutine(ScreenShake(duration, magnitude));
-    }
+        private Camera _camera;
 
-    private IEnumerator ScreenShake(float duration, float magnitude)
-    {
+        // Screenshake variables
+        private Coroutine _screenShake;
+        private Coroutine _scale;
 
-        float elapsed = 0;
+        private void Awake() 
+            => _camera = GetComponent<Camera>();
 
-        var magnitudeSteps = magnitude / duration;
+        private void Start() 
+            => EventManager.Instance.onTriggerShake += TriggerShake;
 
-        while (elapsed < duration)
+        private void OnDisable() 
+            => EventManager.Instance.onTriggerShake -= TriggerShake;
+
+        /// <summary>
+        ///     Shakes the screen a certain amount
+        /// </summary>
+        private void TriggerShake(float duration, float magnitude)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-            float z = -10;
-
-            transform.localPosition = new Vector3(x, y, z);
-
-            elapsed += Time.deltaTime;
-
-            magnitude -= magnitudeSteps * Time.deltaTime;
-
-            yield return null;
+            if (_screenShake != null) StopCoroutine(_screenShake);
+            _screenShake = StartCoroutine(ScreenShake(duration, magnitude));
         }
-    }
+
+        private IEnumerator ScreenShake(float duration, float magnitude)
+        {
+
+            float elapsed = 0;
+
+            var magnitudeSteps = magnitude / duration;
+
+            while (elapsed < duration)
+            {
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-1f, 1f) * magnitude;
+                float z = -10;
+
+                transform.localPosition = new Vector3(x, y, z);
+
+                elapsed += Time.deltaTime;
+
+                magnitude -= magnitudeSteps * Time.deltaTime;
+
+                yield return null;
+            }
+        }
 
     
-    // Scaler functions
-    public void ScaleToDesiredSize(float desiredSize, float smoothSpeed)
-    {
-        if (scale != null) StopCoroutine(scale);
-        scale = StartCoroutine(Scale(desiredSize, smoothSpeed));
-    }
-
-    private IEnumerator Scale(float desiredSize, float smoothSpeed)
-    {
-        while(Mathf.Abs(Camera.orthographicSize - desiredSize) > .1f)
+        // Scaler functions
+        public void ScaleToDesiredSize(float desiredSize, float smoothSpeed)
         {
-            ScaleTo(desiredSize, smoothSpeed);
-            yield return null;
+            if (_scale != null) StopCoroutine(_scale);
+            _scale = StartCoroutine(Scale(desiredSize, smoothSpeed));
         }
-        Camera.orthographicSize = desiredSize;
-    }
 
-    private void ScaleTo(float desiredSize, float smoothSpeed)
-        => Camera.orthographicSize = Mathf.Lerp(Camera.orthographicSize, desiredSize, smoothSpeed);
+        private IEnumerator Scale(float desiredSize, float smoothSpeed)
+        {
+            while(Mathf.Abs(_camera.orthographicSize - desiredSize) > .1f)
+            {
+                ScaleTo(desiredSize, smoothSpeed);
+                yield return null;
+            }
+            _camera.orthographicSize = desiredSize;
+        }
+
+        private void ScaleTo(float desiredSize, float smoothSpeed)
+            => _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, desiredSize, smoothSpeed);
+    }
 }

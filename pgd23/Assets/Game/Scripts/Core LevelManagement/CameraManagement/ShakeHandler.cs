@@ -1,14 +1,14 @@
 using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Core_LevelManagement.CameraManagement
 {
     public class ShakeHandler : MonoBehaviour
     {
         [SerializeField] private Transform movingObject;
         [SerializeField] private float shakeDuration;
         [SerializeField] private float shakeMagnitude;
-        [SerializeField] private float ShakeMagnitudeTreshold = .15f;
+        [SerializeField] private float shakeMagnitudeThreshold = .15f;
         [SerializeField] private float maxFeelDistance = 10;
 
         /// <summary>
@@ -16,14 +16,14 @@ namespace Game.Scripts
         /// </summary>
         public void TriggerShake()
         {
-            var distanceBetweenObjects = Vector2.Distance(movingObject.transform.position, CameraMovement.current.objectToFollow.position);
+            var distanceBetweenObjects = Vector2.Distance(movingObject.transform.position, CameraMovement.Current.objectToFollow.position);
             if (distanceBetweenObjects > maxFeelDistance) return;
 
-            var _shakeMag = shakeMagnitude * (1 - (distanceBetweenObjects/maxFeelDistance));
-            var _shakeDur = shakeDuration;
+            var shakeMag = shakeMagnitude * (1 - (distanceBetweenObjects/maxFeelDistance));
+            var shakeDur = shakeDuration;
 
-            if (_shakeMag < ShakeMagnitudeTreshold) return; 
-            EventManager.Instance.OnTriggerShake(_shakeDur, _shakeMag);
+            if (shakeMag < shakeMagnitudeThreshold) return; 
+            EventManager.Instance.OnTriggerShake(shakeDur, shakeMag);
         }
 
         private void OnDrawGizmosSelected()

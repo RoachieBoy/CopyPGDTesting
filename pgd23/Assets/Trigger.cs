@@ -1,3 +1,4 @@
+using Game.Scripts.Core_LevelManagement.CameraManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,6 @@ public class Trigger : MonoBehaviour
     private void triggerTrigger(GameObject obj)
     {
         trigger?.Invoke();
-        CameraMovement.current.ChangeToFollowing(obj.transform, false, false, newView);
+        CameraMovement.Current.ChangeToFollowing(obj.transform, false, false, newView);
     }
 }

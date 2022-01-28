@@ -1,9 +1,9 @@
-using Game.Scripts.Core_LevelManagement.EventManagement;
 using System.Diagnostics;
+using Game.Scripts.Core_LevelManagement.CameraManagement;
+using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Game.Scripts.GameObjects.Obstacles
+namespace Game.Scripts.GameObjects.Pillars
 {
     public class SquishingPillar : MonoBehaviour
     {       

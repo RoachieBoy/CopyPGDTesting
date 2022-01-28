@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Diagnostics;
 using Game.Scripts.Core_LevelManagement.EventManagement;
+using Game.Scripts.GameObjects.Portal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.AbilitiesSystem.AbilityHandler
 {
@@ -89,7 +88,7 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.GetComponent<Portal>()) PortalManager.current.UsePortal(collision.GetComponent<Portal>(), gameObject);
+            if (collision.GetComponent<Portal>()) PortalManager.Current.UsePortal(collision.GetComponent<Portal>(), gameObject);
             
             //Kills the player on collision with an Obstacle
             if (collision.gameObject.CompareTag("Obstacle")) Die();

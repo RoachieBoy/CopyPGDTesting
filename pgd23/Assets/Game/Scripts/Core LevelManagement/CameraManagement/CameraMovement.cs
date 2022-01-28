@@ -1,130 +1,133 @@
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+namespace Game.Scripts.Core_LevelManagement.CameraManagement
 {
-    public static CameraMovement current;
-
-    [SerializeField] public CameraController Camera;
-
-    #region CameraStates
-    private enum CameraStates
+    public class CameraMovement : MonoBehaviour
     {
-        // Follows the player
-        Following,
-        // Doesn't move
-        Static,
-        // Moves indepently of the player
-        Moving
-    }
+        public static CameraMovement Current;
 
-    [SerializeField] private CameraStates CameraState;
-    #endregion
+        [SerializeField] public new CameraController camera;
 
-    [SerializeField] private Vector2 staticPosition;
-    [SerializeField] private Vector2 camOffset;
-    [SerializeField] private float viewSize;
+        #region CameraStates
+        private enum CameraStates
+        {
+            // Follows the player
+            Following,
+            // Doesn't move
+            Static,
+            // Moves indepently of the player
+            Moving
+        }
 
-    [Header("General information")]
-    [SerializeField] private float smoothSpeed = 0.125f;
+        [SerializeField] private CameraStates cameraState;
+        #endregion
 
-    private Vector2 desiredPosition;
+        [SerializeField] private Vector2 staticPosition;
+        [SerializeField] private Vector2 camOffset;
+        [SerializeField] private float size;
 
-    // Following variables
-    [SerializeField] public Transform objectToFollow;
+        [Header("General information")]
+        [SerializeField] private float smoothSpeed = 0.125f;
 
-    // Static variables
-    private float positionThreshold = .05f;
+        private Vector2 _desiredPosition;
 
-    // Moving variables
-    private Vector2 velocity;
+        // Following variables
+        [SerializeField] public Transform objectToFollow;
 
-    // TODO: Change this immediately pls 
-    private bool OnlyX, OnlyY;
+        // Static variables
+        private float _positionThreshold = .05f;
 
-    // TODO: Delete these if not needed anymore
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) ChangeToFollowing(objectToFollow, false, false, viewSize);
-        if (Input.GetKeyDown(KeyCode.O)) ChangeToStatic(Vector2.zero, viewSize);
-        if (Input.GetKeyDown(KeyCode.I)) ChangeToMoving(new Vector2(12, 0), viewSize);
-    }
+        // Moving variables
+        private Vector2 _velocity;
 
-    private void Awake() => current = this;
+        // TODO: Change this immediately pls 
+        private bool _onlyX, _onlyY;
 
-    private void Start()
-    {
-        if (CameraState == CameraStates.Static) ChangeToStatic(staticPosition + camOffset, viewSize);
-        if (CameraState == CameraStates.Following) ChangeToFollowing(objectToFollow, false, false, viewSize);
-        if(CameraState == CameraStates.Moving) ChangeToMoving(new Vector2(12, 0), viewSize);
-    }
+        // TODO: Delete these if not needed anymore
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.P)) ChangeToFollowing(objectToFollow, false, false, size);
+            if (Input.GetKeyDown(KeyCode.O)) ChangeToStatic(Vector2.zero, size);
+            if (Input.GetKeyDown(KeyCode.I)) ChangeToMoving(new Vector2(12, 0), size);
+        }
 
-    // Moves player smoothly
-    private void FixedUpdate()
-    {
-        if (CameraState == CameraStates.Following) FollowingBehaviour();
-        if (CameraState == CameraStates.Moving) MovingBehaviour();
-    }
+        private void Awake() => Current = this;
 
-    // Moves transition smoothly
-    private void LateUpdate()
-    {
-        if (CameraState == CameraStates.Static) StaticBehaviour();
-    }
+        private void Start()
+        {
+            if (cameraState == CameraStates.Static) ChangeToStatic(staticPosition + camOffset, size);
+            if (cameraState == CameraStates.Following) ChangeToFollowing(objectToFollow, false, false, size);
+            if(cameraState == CameraStates.Moving) ChangeToMoving(new Vector2(12, 0), size);
+        }
 
-    // State Changing functions
-    public void ChangeToMoving(Vector2 velocity, float viewSize = 7.7f)
-    {
-        CameraState = CameraStates.Moving;
-        this.velocity = velocity;
-        Camera.ScaleToDesiredSize(viewSize, smoothSpeed);
-    }
+        // Moves player smoothly
+        private void FixedUpdate()
+        {
+            if (cameraState == CameraStates.Following) FollowingBehaviour();
+            if (cameraState == CameraStates.Moving) MovingBehaviour();
+        }
 
-    public void ChangeToStatic(Vector2 desiredPosition, float viewSize = 7.7f)
-    {
-        CameraState = CameraStates.Static;
-        this.desiredPosition = desiredPosition;
-        Camera.ScaleToDesiredSize(viewSize, smoothSpeed);
-    }
+        // Moves transition smoothly
+        private void LateUpdate()
+        {
+            if (cameraState == CameraStates.Static) StaticBehaviour();
+        }
 
-    public void ChangeToFollowing(Transform objectToFollow, bool onlyX = false, bool onlyY = false, float viewSize = 7.7f)
-    {
-        CameraState = CameraStates.Following;
-        OnlyX = onlyX;
-        OnlyY = onlyY;
-        this.objectToFollow = objectToFollow;
-        Camera.ScaleToDesiredSize(viewSize, smoothSpeed);
-    }
+        // State Changing functions
+        public void ChangeToMoving(Vector2 velocity, float viewSize = 7.7f)
+        {
+            cameraState = CameraStates.Moving;
+            _velocity = velocity;
+            camera.ScaleToDesiredSize(viewSize, smoothSpeed);
+        }
 
-    // TODO: add a square deadzone
-    // Behaviour Functions
-    private void FollowingBehaviour(bool onlyX = false, bool onlyY = false)
-    {
-        if (onlyX) MoveToLerp(new Vector2(objectToFollow.position.x, transform.position.y));
-        else if (onlyY) MoveToLerp(new Vector2(transform.position.x, objectToFollow.position.y));
-        //else MoveToLerp(objectToFollow.position);
+        public void ChangeToStatic(Vector2 desiredPosition, float viewSize = 7.7f)
+        {
+            cameraState = CameraStates.Static;
+            _desiredPosition = desiredPosition;
+            camera.ScaleToDesiredSize(viewSize, smoothSpeed);
+        }
 
-        MoveToLerp(objectToFollow.position);
-    }
+        public void ChangeToFollowing(Transform following, bool onlyX = false, bool onlyY = false, float viewSize = 7.7f)
+        {
+            cameraState = CameraStates.Following;
+            _onlyX = onlyX;
+            _onlyY = onlyY;
+            this.objectToFollow = following;
+            camera.ScaleToDesiredSize(viewSize, smoothSpeed);
+        }
 
-    private void StaticBehaviour()
-    {
-        // Moving to desired position
-        if (Vector3.Distance(transform.position, desiredPosition) < positionThreshold) transform.position = desiredPosition;
-        else MoveToLerp(desiredPosition);
-    }
+        // TODO: add a square deadzone
+        // Behaviour Functions
+        private void FollowingBehaviour(bool onlyX = false, bool onlyY = false)
+        {
+            if (onlyX) MoveToLerp(new Vector2(objectToFollow.position.x, transform.position.y));
+            else if (onlyY) MoveToLerp(new Vector2(transform.position.x, objectToFollow.position.y));
+            //else MoveToLerp(following.position);
 
-    private void MovingBehaviour()
-    {
-        Move(velocity);
-    }
+            MoveToLerp(objectToFollow.position);
+        }
+
+        private void StaticBehaviour()
+        {
+            // Moving to desired position
+            if (Vector3.Distance(transform.position, _desiredPosition) < _positionThreshold) transform.position = _desiredPosition;
+            else MoveToLerp(_desiredPosition);
+        }
+
+        private void MovingBehaviour()
+        {
+            Move(_velocity);
+        }
     
-    // Mover functions
-    private void MoveToLerp(Vector2 desiredPosition) 
-    {
-        var despo = new Vector3(desiredPosition.x, desiredPosition.y, -10);
-        transform.position = Vector3.Lerp(transform.position, despo, smoothSpeed);  
-    }
+        // Mover functions
+        private void MoveToLerp(Vector2 desiredPosition) 
+        {
+            var despo = new Vector3(desiredPosition.x, desiredPosition.y, -10);
+            transform.position = Vector3.Lerp(transform.position, despo, smoothSpeed);  
+        }
 
-    private void Move(Vector2 vel) 
-        => transform.position += new Vector3(vel.x, vel.y, -10) * Time.deltaTime;
+        private void Move(Vector2 vel) 
+            => transform.position += new Vector3(vel.x, vel.y, -10) * Time.deltaTime;
+    }
 }

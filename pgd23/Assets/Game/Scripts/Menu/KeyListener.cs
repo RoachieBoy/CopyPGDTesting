@@ -1,8 +1,4 @@
-using Game.Scripts.AudioManagement;
-using Game.Scripts.Core_LevelManagement.EventManagement;
-using Game.Scripts.KeyBindings;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.Menu
 {

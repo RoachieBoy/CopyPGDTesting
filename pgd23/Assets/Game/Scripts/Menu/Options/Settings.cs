@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Game.Scripts.Tools;
+using Game.Scripts.VisualEffects;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Game.Scripts.Menu.Options
 {

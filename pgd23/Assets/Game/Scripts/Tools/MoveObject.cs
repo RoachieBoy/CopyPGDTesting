@@ -1,31 +1,34 @@
 using System.Collections;
 using UnityEngine;
 
-public class MoveObject : MonoBehaviour
+namespace Game.Scripts.Tools
 {
-    private Coroutine _coroutine;
-
-    public void Move(Vector2 Pos, float time, float waitTime = 0)
+    public class MoveObject : MonoBehaviour
     {
-        if(_coroutine != null) StopCoroutine(_coroutine);
-        _coroutine = StartCoroutine(MoveObjec(Pos, time, waitTime));
-    }
+        private Coroutine _coroutine;
 
-    private IEnumerator MoveObjec(Vector3 pos, float time, float waitTime = 0)
-    {
-        var direction = pos;
-        var speed = direction.magnitude / time;
-        direction.Normalize();
-
-        yield return new WaitForSeconds(waitTime);
-
-        while(time > 0)
+        public void Move(Vector2 Pos, float time, float waitTime = 0)
         {
-            var increment = direction * speed * Time.deltaTime;
-            transform.position += increment;
-
-            time -= Time.deltaTime;
-            yield return null;
+            if(_coroutine != null) StopCoroutine(_coroutine);
+            _coroutine = StartCoroutine(MoveObjec(Pos, time, waitTime));
         }
-    }    
+
+        private IEnumerator MoveObjec(Vector3 pos, float time, float waitTime = 0)
+        {
+            var direction = pos;
+            var speed = direction.magnitude / time;
+            direction.Normalize();
+
+            yield return new WaitForSeconds(waitTime);
+
+            while(time > 0)
+            {
+                var increment = direction * speed * Time.deltaTime;
+                transform.position += increment;
+
+                time -= Time.deltaTime;
+                yield return null;
+            }
+        }    
+    }
 }
