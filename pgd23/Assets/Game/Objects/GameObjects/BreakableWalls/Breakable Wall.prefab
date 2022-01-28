@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1b7cf8382be95438a4f01ab9a7c8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brokenWallPiece: {fileID: 4871213722027656416, guid: ef955fb4555a96249a01cb43ff1b2a55, type: 3}
-  _keepPlayerSpeed: 1
+  brokenWallPiece: {fileID: 4871213722027656416, guid: ef955fb4555a96249a01cb43ff1b2a55, type: 3}
+  keepPlayerSpeed: 1
 --- !u!61 &1907137353
 BoxCollider2D:
   m_ObjectHideFlags: 0

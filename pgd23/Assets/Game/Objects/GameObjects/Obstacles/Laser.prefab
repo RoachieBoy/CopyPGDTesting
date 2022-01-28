@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserEmitter: {fileID: 401102503788682900}
-  _particleEmitter: {fileID: 2397920448340814021, guid: 04bee7e374ab9f145ab0886571db081f, type: 3}
+  particleEmitter: {fileID: 2397920448340814021, guid: 04bee7e374ab9f145ab0886571db081f, type: 3}
   laserMaterial: {fileID: 2100000, guid: ad0a0179d03b84949a50cd025bdde214, type: 2}
   amountOfLasers: 4
   laserLength: 12.38
-  rotationSpeed: 10
+  rotationSpeed: 20
 --- !u!1 &401102503788682900
 GameObject:
   m_ObjectHideFlags: 0

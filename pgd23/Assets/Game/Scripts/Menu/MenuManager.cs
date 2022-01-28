@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Game.Scripts.AudioManagement;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -27,12 +26,7 @@ namespace Game.Scripts.Menu
             AudioShit();
             LoadScene(levelSelector.LevelId);
             
-            var deathAnalytics = Analytics.CustomEvent("Level Loads", 
-                new Dictionary<string, object> {
-                    {
-                        "Level Loaded", "Success"
-                    }
-                });
+            var deathAnalytics = Analytics.CustomEvent("Level Loads");
             
             Debug.Log(deathAnalytics);
         }

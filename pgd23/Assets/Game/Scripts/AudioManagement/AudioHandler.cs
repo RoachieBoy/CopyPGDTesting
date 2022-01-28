@@ -102,7 +102,7 @@ namespace Game.Scripts.AudioManagement
             var deathAnalytics = Analytics.CustomEvent("Running Game Time", 
                 new Dictionary<string, object> {
                     {
-                        "RunningTime", Time.realtimeSinceStartup
+                        "Running Time", Time.realtimeSinceStartup
                     }
                 });
             

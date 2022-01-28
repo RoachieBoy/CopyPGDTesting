@@ -148,8 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d068d5343021cb43b253d599338d631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 0}
-  _minimumSurvivalTime: 1.2
+  minimumSurvivalTime: 1.5
 --- !u!1 &1395909857514119924
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,8 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d068d5343021cb43b253d599338d631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 0}
-  _minimumSurvivalTime: 1.2
+  minimumSurvivalTime: 1.5
 --- !u!1 &4871213720921164067
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,8 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d068d5343021cb43b253d599338d631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 0}
-  _minimumSurvivalTime: 1.2
+  minimumSurvivalTime: 1.5
 --- !u!1 &4871213722027656416
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,5 +629,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d068d5343021cb43b253d599338d631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 0}
-  _minimumSurvivalTime: 1.2
+  minimumSurvivalTime: 1.5
