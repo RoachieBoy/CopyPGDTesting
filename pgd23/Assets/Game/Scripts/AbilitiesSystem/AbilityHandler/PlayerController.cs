@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using Game.Scripts.Core_LevelManagement.EventManagement;
 using Game.Scripts.GameObjects.Portal;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.AbilitiesSystem.AbilityHandler
@@ -161,6 +163,15 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
         /// <returns></returns>
         public static void Die()
         {
+            var deathAnalytics = Analytics.CustomEvent("Level Deaths", 
+                new Dictionary<string, object> {
+                    {
+                        "Level", SceneManager.GetActiveScene().name
+                    }
+            });
+            
+            Debug.Log(deathAnalytics);
+            
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         

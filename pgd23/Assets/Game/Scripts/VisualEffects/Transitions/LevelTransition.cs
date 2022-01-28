@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using Game.Scripts.AudioManagement;
 using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.VisualEffects.Transitions
@@ -53,8 +55,16 @@ namespace Game.Scripts.VisualEffects.Transitions
         {
             PlayerPrefs.SetInt("completed-" + (index - 1), 1);
             transition.SetTrigger(TransitionFade);
+            
             yield return new WaitForSeconds(transitionTime);
+            
             SceneManager.LoadScene(index);
+
+            if (AudioHandler.Instance.GetCurrentSong() == null) yield break;
+            
+            var levelCompletion = Analytics.CustomEvent("Audio Check");
+            
+            Debug.Log(levelCompletion);
         }
     }
 }

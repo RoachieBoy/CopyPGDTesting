@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.GameObjects.ElevatorSystem
 {
@@ -17,6 +20,14 @@ namespace Game.Scripts.GameObjects.ElevatorSystem
             EventManager.Instance.OnFadeOut();
             EventManager.Instance.OnRemoveAbilities();
             
+            var levelCompletion = Analytics.CustomEvent("Level Completion", 
+                new Dictionary<string, object> {
+                    {
+                        "Level", SceneManager.GetActiveScene().name
+                    }
+                });
+            
+            Debug.Log(levelCompletion);
             //sets player velocity to zero
             other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }

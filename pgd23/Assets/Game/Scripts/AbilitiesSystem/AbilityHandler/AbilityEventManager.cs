@@ -14,8 +14,12 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
         /// </summary>
         /// <param name="abilityType"> which type of ability needs to be enabled </param>
         /// <param name="amountOfTriggers"> how many triggers does this ability have </param>
-        public static void OnAbilityPickUp(AbilityType abilityType, int amountOfTriggers) 
-            => onAbilityPickUp?.Invoke(abilityType, amountOfTriggers);
+        public static void OnAbilityPickUp(AbilityType abilityType, int amountOfTriggers)
+        {
+            onAbilityPickUp?.Invoke(abilityType, amountOfTriggers);
+            
+            
+        }
 
         public static event Action<AbilityType> onAbilityDisable;
 

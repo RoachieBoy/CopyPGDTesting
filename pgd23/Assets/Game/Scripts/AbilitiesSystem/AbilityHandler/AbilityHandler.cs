@@ -3,6 +3,7 @@ using Game.Scripts.AbilitiesSystem.Abilities;
 using Game.Scripts.Core_LevelManagement.EventManagement;
 using Game.Scripts.KeyBindings;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Game.Scripts.AbilitiesSystem.AbilityHandler
 {
@@ -81,6 +82,10 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
             if (!_abilities.TryGetValue(abilityType, out var ability)) return;
             ability.enabled = true;
             ability.Enable(amountOfTriggers);
+            
+            var abilityAdded = Analytics.CustomEvent("Ability Enabled");
+            
+            Debug.Log(abilityAdded);
             
             ActivateAbilityKeyUI(InputManager.Instance.GetBindingAction(abilityType));
         }
