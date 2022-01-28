@@ -93,7 +93,19 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
             if (collision.GetComponent<Portal>()) PortalManager.Current.UsePortal(collision.GetComponent<Portal>(), gameObject);
             
             //Kills the player on collision with an Obstacle
-            if (collision.gameObject.CompareTag("Obstacle")) Die();
+            if (collision.gameObject.CompareTag("Obstacle"))
+            {
+                var deathAnalytics = Analytics.CustomEvent("Obstacle Deaths by Type", 
+                    new Dictionary<string, object> {
+                        {
+                            "Killer Obstacle", collision.gameObject.name
+                        }
+                    });
+            
+                Debug.Log(deathAnalytics);
+                
+                Die();
+            }
         }
 
         /// <summary>

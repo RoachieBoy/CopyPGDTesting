@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Game.Scripts.AudioManagement;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.Menu
@@ -21,8 +23,18 @@ namespace Game.Scripts.Menu
         public void LoadMission(LevelSelector levelSelector)
         {
             if (levelSelector.Locked) return;
+            
             AudioShit();
             LoadScene(levelSelector.LevelId);
+            
+            var deathAnalytics = Analytics.CustomEvent("Level Loads", 
+                new Dictionary<string, object> {
+                    {
+                        "Level Loaded", "Success"
+                    }
+                });
+            
+            Debug.Log(deathAnalytics);
         }
 
         /// <summary>

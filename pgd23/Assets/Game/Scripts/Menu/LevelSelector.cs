@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Game.Scripts.Menu
 {
-
     public class LevelSelector : MonoBehaviour
     {
         [SerializeField] private int _levelId;
         [SerializeField] private bool _locked;
-        [SerializeField] private string newText; 
+        [SerializeField] private string newText;
 
         public int LevelId
         {
@@ -23,15 +24,17 @@ namespace Game.Scripts.Menu
             get => _locked;
             private set => _locked = value;
         }
-
-
-        // Start is called before the first frame update
+        
         void Start()
         {
-            string unlockRequirement = "completed-" + (_levelId - 1);
+            var unlockRequirement = "completed-" + (_levelId - 1);
 
             if (_locked && PlayerPrefs.HasKey(unlockRequirement) && PlayerPrefs.GetInt(unlockRequirement) == 1)
             {
+                var unlocked = Analytics.CustomEvent("New Level Unlocked");
+            
+                Debug.Log(unlocked);
+                
                 Unlock();
             }
             else if (_locked)
@@ -45,6 +48,7 @@ namespace Game.Scripts.Menu
             if (Input.GetKeyDown(KeyCode.R))
             {
                 int count = 1;
+                
                 while (PlayerPrefs.HasKey("completed-" + count))
                 {
                     PlayerPrefs.DeleteKey("completed-" + count);
@@ -56,7 +60,7 @@ namespace Game.Scripts.Menu
 
             if (Input.GetKeyDown(KeyCode.O))
             {
-               LockLevels();
+                LockLevels();
 
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
@@ -109,8 +113,8 @@ namespace Game.Scripts.Menu
 
             foreach (TextMeshProUGUI child in childrenText)
             {
-                child.text = newText; 
-            } 
+                child.text = newText;
+            }
         }
     }
 }

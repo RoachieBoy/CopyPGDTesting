@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Tools;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.AudioManagement
 {
@@ -93,5 +96,17 @@ namespace Game.Scripts.AudioManagement
         }
 
         #endregion
+
+        private void OnApplicationQuit()
+        {
+            var deathAnalytics = Analytics.CustomEvent("Running Game Time", 
+                new Dictionary<string, object> {
+                    {
+                        "RunningTime", Time.realtimeSinceStartup
+                    }
+                });
+            
+            Debug.Log(deathAnalytics);
+        }
     }
 }
