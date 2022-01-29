@@ -19,15 +19,9 @@ namespace Game.Scripts.GameObjects.ElevatorSystem
             //fade screen 
             EventManager.Instance.OnFadeOut();
             EventManager.Instance.OnRemoveAbilities();
+
+            UnityAnalyticsManager.LevelComplete();
             
-            var levelCompletion = Analytics.CustomEvent("Level Completion", 
-                new Dictionary<string, object> {
-                    {
-                        "Level", SceneManager.GetActiveScene().name
-                    }
-                });
-            
-            Debug.Log(levelCompletion);
             //sets player velocity to zero
             other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }

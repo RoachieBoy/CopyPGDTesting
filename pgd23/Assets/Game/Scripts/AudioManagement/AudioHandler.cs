@@ -106,7 +106,7 @@ namespace Game.Scripts.AudioManagement
                     }
                 });
             
-            Debug.Log(deathAnalytics);
+           // Debug.Log(deathAnalytics);
         }
     }
 }

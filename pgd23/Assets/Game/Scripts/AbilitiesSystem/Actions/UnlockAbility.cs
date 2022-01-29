@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Scripts.AbilitiesSystem.AbilityHandler;
+using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
 
 namespace Game.Scripts.AbilitiesSystem.Actions
@@ -13,6 +14,7 @@ namespace Game.Scripts.AbilitiesSystem.Actions
         {
             if (!other.name.Equals("Player")) return;
             UnlockAbilities();
+            UnityAnalyticsManager.PickedUpAbility();
             Destroy(gameObject);
         }
 

@@ -1,3 +1,4 @@
+using Game.Scripts.Core_LevelManagement.EventManagement;
 using UnityEngine;
 
 namespace Game.Scripts.GameObjects.MusicNotes
@@ -8,9 +9,10 @@ namespace Game.Scripts.GameObjects.MusicNotes
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // Check for colission with player
             if (!collision.gameObject.CompareTag("Player")) return; 
             // Spawn Particle System
+            
+            UnityAnalyticsManager.PickedUpNote();
 
             // Destroy gameObject
             Destroy(gameObject);

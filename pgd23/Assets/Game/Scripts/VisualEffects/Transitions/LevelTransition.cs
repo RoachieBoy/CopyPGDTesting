@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Scripts.AudioManagement;
 using Game.Scripts.Core_LevelManagement.EventManagement;
+using Game.Scripts.Menu;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,7 @@ namespace Game.Scripts.VisualEffects.Transitions
         [SerializeField] private string songToPlay;
         [SerializeField] private string songToStop; 
         private static readonly int TransitionFade = Animator.StringToHash("Start");
-        private Coroutine _fade; 
+        private Coroutine _fade;
 
         public void Start()
         {
@@ -44,6 +45,8 @@ namespace Game.Scripts.VisualEffects.Transitions
             {
                 _fade ??= StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
             }
+            
+            UnityAnalyticsManager.SetCurrentLevel(SceneManager.GetActiveScene().name);
         }
 
         /// <summary>
@@ -59,12 +62,12 @@ namespace Game.Scripts.VisualEffects.Transitions
             yield return new WaitForSeconds(transitionTime);
             
             SceneManager.LoadScene(index);
+            
+            UnityAnalyticsManager.LevelLoaded();
 
             if (AudioHandler.Instance.GetCurrentSong() == null) yield break;
-            
-            var levelCompletion = Analytics.CustomEvent("Audio Check");
-            
-            Debug.Log(levelCompletion);
+
+            UnityAnalyticsManager.SongPlaying();
         }
     }
 }

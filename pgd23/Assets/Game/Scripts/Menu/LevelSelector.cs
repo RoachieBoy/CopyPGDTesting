@@ -1,3 +1,4 @@
+using Game.Scripts.Core_LevelManagement.EventManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -30,9 +31,7 @@ namespace Game.Scripts.Menu
 
             if (_locked && PlayerPrefs.HasKey(unlockRequirement) && PlayerPrefs.GetInt(unlockRequirement) == 1)
             {
-                var unlocked = Analytics.CustomEvent("New Level Unlocked");
-            
-                Debug.Log(unlocked);
+                UnityAnalyticsManager.LevelUnlocked();
                 
                 Unlock();
             }

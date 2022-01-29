@@ -92,20 +92,11 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
         {
             if (collision.GetComponent<Portal>()) PortalManager.Current.UsePortal(collision.GetComponent<Portal>(), gameObject);
             
-            //Kills the player on collision with an Obstacle
-            if (collision.gameObject.CompareTag("Obstacle"))
-            {
-                var deathAnalytics = Analytics.CustomEvent("Obstacle Deaths by Type", 
-                    new Dictionary<string, object> {
-                        {
-                            "Killer Obstacle", collision.gameObject.name
-                        }
-                    });
+            if (!collision.gameObject.CompareTag("Obstacle")) return;
             
-                Debug.Log(deathAnalytics);
+            UnityAnalyticsManager.KilledPlayer(collision.gameObject.name);
                 
-                Die();
-            }
+            Die();
         }
 
         /// <summary>
@@ -175,14 +166,8 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
         /// <returns></returns>
         public static void Die()
         {
-            var deathAnalytics = Analytics.CustomEvent("Level Deaths", 
-                new Dictionary<string, object> {
-                    {
-                        "Level", SceneManager.GetActiveScene().name
-                    }
-            });
-            
-            Debug.Log(deathAnalytics);
+            UnityAnalyticsManager.PlayerDied();
+            Debug.Log(UnityAnalyticsManager.Deaths);
             
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

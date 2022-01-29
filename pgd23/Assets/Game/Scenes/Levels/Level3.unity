@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2663338741176562125, guid: 92e6b03e0dd2f054a9601860c2ababc8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.2944108
+      objectReference: {fileID: 0}
     - target: {fileID: 2663338741176562126, guid: 92e6b03e0dd2f054a9601860c2ababc8, type: 3}
       propertyPath: m_RootOrder
       value: 2

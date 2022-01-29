@@ -1,4 +1,5 @@
 using Game.Scripts.AudioManagement;
+using Game.Scripts.Core_LevelManagement.EventManagement;
 using Game.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -80,7 +81,11 @@ namespace Game.Scripts.Menu.Options
         /// <summary>
         ///     Exits the game when button is clicked 
         /// </summary>
-        public void QuitGame() => Application.Quit();
+        public void QuitGame()
+        {
+            UnityAnalyticsManager.SavesNumberOfLevels();
+            Application.Quit(); 
+        } 
 
         public void ToggleColorBlindUI(bool on)
         {
