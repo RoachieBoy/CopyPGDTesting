@@ -6,16 +6,13 @@ namespace Game.Scripts.Core_LevelManagement.EventManagement
 {
     public static class UnityAnalyticsManager
     {
-        public static int Deaths;
+        private static int _deaths;
         private static int _amountOfAbilities; 
         private static int _amountLevels;
         private static int _notes;
-        
         private static bool _isPlayingSong;
         private static bool _levelLoaded;
-
         private static string _level;
-        
         private static Dictionary<string, int> _obstacleKills = new Dictionary<string, int>();
 
         public static void KilledPlayer(string name)
@@ -42,7 +39,7 @@ namespace Game.Scripts.Core_LevelManagement.EventManagement
         /// </summary>
         public static void PlayerDied()
         {
-            Deaths++;
+            _deaths++;
         }
 
         /// <summary>
@@ -80,7 +77,7 @@ namespace Game.Scripts.Core_LevelManagement.EventManagement
             var analyticsData = new Dictionary<string, object>
             {
                 {"Level", _level},
-                {"Deaths", Deaths},
+                {"Deaths", _deaths},
                 {"Notes", _notes},
                 {"Abilities", _amountOfAbilities}
             };
@@ -103,7 +100,7 @@ namespace Game.Scripts.Core_LevelManagement.EventManagement
 
         private static void Resets()
         {
-            Deaths = 0;
+            _deaths = 0;
             _notes = 0;
             _amountOfAbilities = 0; 
             _isPlayingSong = false;

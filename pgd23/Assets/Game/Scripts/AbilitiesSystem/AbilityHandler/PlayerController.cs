@@ -167,8 +167,7 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
         public static void Die()
         {
             UnityAnalyticsManager.PlayerDied();
-            Debug.Log(UnityAnalyticsManager.Deaths);
-            
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         

@@ -84,14 +84,14 @@ public class CameraMovement : MonoBehaviour
         Camera.ScaleToDesiredSize(viewSize, smoothSpeed);
     }
 
-    public void ChangeToFollowing(Transform objectToFollow, bool onlyX = false, bool onlyY = false, float viewSize = 7.7f)
-    {
-        CameraState = CameraStates.Following;
-        OnlyX = onlyX;
-        OnlyY = onlyY;
-        this.objectToFollow = objectToFollow;
-        Camera.ScaleToDesiredSize(viewSize, smoothSpeed);
-    }
+        public void ChangeToFollowing(Transform following, bool onlyX = false, bool onlyY = false, float viewSize = 7.7f)
+        {
+            CameraState = CameraStates.Following;
+            OnlyX = onlyX;
+            OnlyY = onlyY;
+            objectToFollow = following;
+            Camera.ScaleToDesiredSize(viewSize, smoothSpeed);
+        }
 
     // TODO: add a square deadzone
     // Behaviour Functions
