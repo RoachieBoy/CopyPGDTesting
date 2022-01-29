@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2663338741176562126, guid: 92e6b03e0dd2f054a9601860c2ababc8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.72892
+      value: -2.7133
       objectReference: {fileID: 0}
     - target: {fileID: 2663338741176562126, guid: 92e6b03e0dd2f054a9601860c2ababc8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -185,6 +185,10 @@ PrefabInstance:
     - target: {fileID: 2663338741176562126, guid: 92e6b03e0dd2f054a9601860c2ababc8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663338741176562127, guid: 92e6b03e0dd2f054a9601860c2ababc8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.2944108
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92e6b03e0dd2f054a9601860c2ababc8, type: 3}
@@ -1610,7 +1614,7 @@ MonoBehaviour:
   movingObject: {fileID: 55374641}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &66074340
 MonoBehaviour:
@@ -1650,18 +1654,6 @@ PrefabInstance:
       propertyPath: controlContainer
       value: 
       objectReference: {fileID: 1304505764}
-    - target: {fileID: 1054995711644285909, guid: 6a7f49179a1ac8a4fa3abfc0fab1a759, type: 3}
-      propertyPath: Dust
-      value: 
-      objectReference: {fileID: 3482444558528581858, guid: f6e6702805957cc44ac9c3d225f13e7b, type: 3}
-    - target: {fileID: 1054995711644285909, guid: 6a7f49179a1ac8a4fa3abfc0fab1a759, type: 3}
-      propertyPath: maxVerticalSpeed
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054995711644285909, guid: 6a7f49179a1ac8a4fa3abfc0fab1a759, type: 3}
-      propertyPath: maxHorizontSpeedBoost
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7758125885959842900, guid: 6a7f49179a1ac8a4fa3abfc0fab1a759, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2180,7 +2172,7 @@ MonoBehaviour:
   movingObject: {fileID: 1394478601}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &112427155
 MonoBehaviour:
@@ -3761,7 +3753,7 @@ MonoBehaviour:
   movingObject: {fileID: 1237380378}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &175820935
 MonoBehaviour:
@@ -3862,7 +3854,7 @@ MonoBehaviour:
   movingObject: {fileID: 1667164409}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &182474456
 MonoBehaviour:
@@ -4912,7 +4904,7 @@ MonoBehaviour:
   movingObject: {fileID: 344042699}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &222510706
 MonoBehaviour:
@@ -7305,7 +7297,7 @@ MonoBehaviour:
   movingObject: {fileID: 1356106830}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &355554626
 MonoBehaviour:
@@ -9226,7 +9218,7 @@ MonoBehaviour:
   movingObject: {fileID: 1553842977}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &436804599
 MonoBehaviour:
@@ -16606,7 +16598,7 @@ MonoBehaviour:
   movingObject: {fileID: 2069735732}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &830998027
 MonoBehaviour:
@@ -22286,26 +22278,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 262137628}
     m_Modifications:
-    - target: {fileID: 1663174500, guid: ee60ac748e644e5438f4cd4bcf55295f, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1447452086616846943, guid: ee60ac748e644e5438f4cd4bcf55295f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1447452086616846943, guid: ee60ac748e644e5438f4cd4bcf55295f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3099367011362799196, guid: ee60ac748e644e5438f4cd4bcf55295f, type: 3}
-      propertyPath: viewSize
-      value: 7.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3099367011362799196, guid: ee60ac748e644e5438f4cd4bcf55295f, type: 3}
-      propertyPath: CameraState
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3099367011362799196, guid: ee60ac748e644e5438f4cd4bcf55295f, type: 3}
       propertyPath: objectToFollow
       value: 
@@ -23978,7 +23950,7 @@ MonoBehaviour:
   movingObject: {fileID: 931771103}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1247430923
 MonoBehaviour:
@@ -24223,7 +24195,7 @@ MonoBehaviour:
   movingObject: {fileID: 1318216239}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1277101201
 MonoBehaviour:
@@ -26219,7 +26191,7 @@ MonoBehaviour:
   movingObject: {fileID: 1945572377}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1337975162
 MonoBehaviour:
@@ -27009,7 +26981,7 @@ MonoBehaviour:
   movingObject: {fileID: 1468432864}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1358728232
 MonoBehaviour:
@@ -28338,7 +28310,7 @@ MonoBehaviour:
   movingObject: {fileID: 452870756}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1429061426
 MonoBehaviour:
@@ -28812,7 +28784,7 @@ MonoBehaviour:
   movingObject: {fileID: 995069749}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1456468216
 MonoBehaviour:
@@ -29164,7 +29136,7 @@ MonoBehaviour:
   movingObject: {fileID: 131803804}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1464824086
 MonoBehaviour:
@@ -29949,7 +29921,7 @@ MonoBehaviour:
   movingObject: {fileID: 1363417311}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1507351599
 MonoBehaviour:
@@ -31104,7 +31076,7 @@ MonoBehaviour:
   movingObject: {fileID: 561585340}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1563926227
 MonoBehaviour:
@@ -32839,7 +32811,7 @@ MonoBehaviour:
   movingObject: {fileID: 43367304}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1679634352
 MonoBehaviour:
@@ -32945,7 +32917,7 @@ MonoBehaviour:
   movingObject: {fileID: 218408229}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1685702763
 MonoBehaviour:
@@ -114828,7 +114800,7 @@ MonoBehaviour:
   movingObject: {fileID: 1324774497}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1731994701
 MonoBehaviour:
@@ -116967,7 +116939,7 @@ MonoBehaviour:
   movingObject: {fileID: 1743272617}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1863614772
 MonoBehaviour:
@@ -117318,7 +117290,7 @@ MonoBehaviour:
   movingObject: {fileID: 1277129851}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1892366662
 MonoBehaviour:
@@ -118430,7 +118402,7 @@ MonoBehaviour:
   movingObject: {fileID: 466419766}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1960181715
 MonoBehaviour:
@@ -118640,7 +118612,7 @@ MonoBehaviour:
   movingObject: {fileID: 1335229483}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &1968260688
 MonoBehaviour:
@@ -119871,7 +119843,7 @@ MonoBehaviour:
   movingObject: {fileID: 2071657105}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &2033522062
 MonoBehaviour:
@@ -148384,7 +148356,7 @@ MonoBehaviour:
   movingObject: {fileID: 2093476748}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &2045243303
 MonoBehaviour:
@@ -149562,7 +149534,7 @@ MonoBehaviour:
   movingObject: {fileID: 1415812089}
   shakeDuration: 1
   shakeMagnitude: 0.5
-  ShakeMagnitudeTreshold: 0.15
+  shakeMagnitudeThreshold: 0.15
   maxFeelDistance: 15
 --- !u!114 &2064626162
 MonoBehaviour:

@@ -152,8 +152,8 @@ MonoBehaviour:
   maxHorizontSpeedBoost: 20
   maxVerticalSpeed: 28
   drag: 2.9
-  Dust: {fileID: 0}
-  DashEffect: {fileID: 0}
+  Dust: {fileID: 6301765918686526751, guid: cc0969d83d1347c4e9c014c6d6c1deb9, type: 3}
+  DashEffect: {fileID: 3482444558528581858, guid: f6e6702805957cc44ac9c3d225f13e7b, type: 3}
   grounded: 0
   isDashing: 0
 --- !u!114 &1054995711644285898

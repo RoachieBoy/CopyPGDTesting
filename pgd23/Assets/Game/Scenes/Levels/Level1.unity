@@ -26711,6 +26711,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 627de14934ef96347a4f3e059976d619, type: 3}
+--- !u!114 &1149172984 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6099102448076340413, guid: 627de14934ef96347a4f3e059976d619, type: 3}
+  m_PrefabInstance: {fileID: 1149172983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff82a2e7e9595448b3775fe3484e0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1156671129
 GameObject:
   m_ObjectHideFlags: 0
@@ -32519,6 +32530,10 @@ PrefabInstance:
       propertyPath: abilityManager
       value: 
       objectReference: {fileID: 1502243254}
+    - target: {fileID: 1054995711644285898, guid: 6a7f49179a1ac8a4fa3abfc0fab1a759, type: 3}
+      propertyPath: controlContainer
+      value: 
+      objectReference: {fileID: 1149172984}
     - target: {fileID: 1054995711644285909, guid: 6a7f49179a1ac8a4fa3abfc0fab1a759, type: 3}
       propertyPath: Dust
       value: 
