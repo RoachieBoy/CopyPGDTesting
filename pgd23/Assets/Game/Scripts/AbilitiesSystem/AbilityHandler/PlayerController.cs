@@ -93,9 +93,7 @@ namespace Game.Scripts.AbilitiesSystem.AbilityHandler
             if (collision.GetComponent<Portal>()) PortalManager.Current.UsePortal(collision.GetComponent<Portal>(), gameObject);
             
             if (!collision.gameObject.CompareTag("Obstacle")) return;
-            
-            UnityAnalyticsManager.KilledPlayer(collision.gameObject.name);
-                
+
             Die();
         }
 
