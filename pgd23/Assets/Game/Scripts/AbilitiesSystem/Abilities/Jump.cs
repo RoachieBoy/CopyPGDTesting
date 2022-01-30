@@ -52,7 +52,7 @@ namespace Game.Scripts.AbilitiesSystem.Abilities
         /// <param name="yForce"> force at which the player moves upwards </param>
         private void DoAJump(float yForce)
         {
-            EventManager.Instance.OnMovingPlatformCorrection(_player.gameObject);
+            //EventManager.Instance.OnMovingPlatformCorrection(_player.gameObject);
 
             _player.Rigidbody.AddForce(new Vector2(0f, yForce * JumpMultiplier));
             
