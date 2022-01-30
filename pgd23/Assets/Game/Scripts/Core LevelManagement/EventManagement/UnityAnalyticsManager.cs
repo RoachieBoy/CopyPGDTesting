@@ -14,6 +14,9 @@ namespace Game.Scripts.Core_LevelManagement.EventManagement
         private static bool _levelLoaded;
         private static string _level;
 
+        /// <summary>
+        ///     When player picks up ability
+        /// </summary>
         public static void PickedUpAbility()
         {
             _amountOfAbilities++;
@@ -131,3 +134,5 @@ namespace Game.Scripts.Core_LevelManagement.EventManagement
         }
     }
 }
+
+
