@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943608517573856764}
-  - component: {fileID: 408278755}
+  - component: {fileID: 8581579380702475327}
   m_Layer: 0
   m_Name: HangingBox
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &408278755
+--- !u!114 &8581579380702475327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c16aa4ae0b0da43bb31876a36dd51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joint: {fileID: 1541408767685865027}
-  player: {fileID: 0}
-  offset: {x: -15, y: -8}
-  distanceToTrigger: 12
+  joint: {fileID: 4604556219873932100}
+  player: {fileID: 7758125885959842900, guid: 6a7f49179a1ac8a4fa3abfc0fab1a759, type: 3}
+  offset: {x: 0, y: 0}
+  distanceToTrigger: 10
 --- !u!1 &3213864599146904418
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +715,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -1.5327135, y: 0.87435097}
+  m_ConnectedAnchor: {x: -2.5, y: 1.64}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
